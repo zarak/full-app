@@ -21,7 +21,7 @@ Simplifications:
 ## Minikep Django Rest API project
 
 #### Install project
-	git clone <repo>
+	git clone https://github.com/mini-kep/full-app.git
 	cd minikep/
 	pip install -r requirements.txt
 
