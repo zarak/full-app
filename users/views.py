@@ -3,8 +3,7 @@ from django.contrib.auth.models import User, Group
 
 from rest_framework import viewsets
 
-from api.serializers import UserSerializer, GroupSerializer, DatapointSerializer
-from api.models import Datapoint
+from users.serializers import UserSerializer, GroupSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -21,11 +20,3 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
-
-
-class DatapointViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows datapoints to be viewed or edited. Generate CRUD for Datapoint.
-    """
-    queryset = Datapoint.objects.all()
-    serializer_class = DatapointSerializer

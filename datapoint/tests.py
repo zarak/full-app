@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 from rest_framework import status
 from rest_framework.test import APITestCase
-from api.models import Datapoint
+from datapoint.models import Datapoint
 
 
 class DatapointTests(APITestCase):
