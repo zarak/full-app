@@ -3,31 +3,27 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-
 class Datapoint(models.Model):
     """
-    Create table 'Datapoint' in Db with fields:
-      - freq
-      - name
-      - date
-      - value
+    Create table 'Datapoint' with fields:
+      freq - a letter in 'aqmwd'
+      name - string like 'VARNAME_unit', under 128 letters total
+      date - date like '2017-01-31'
+      value - float
     """
-    FREQ_CHOICES = (
-        ('a', 'a'),
-        ('q', 'q'),
-        ('m', 'm'),
-        ('w', 'w'),
-        ('d', 'd'),
+    ALLOWED_FREQUENCIES = (
+        # (actial value, human-readable equivalent)
+        ('a', 'annual'),
+        ('q', 'quarterly'),
+        ('m', 'monthly'),
+        ('w', 'weekly'),
+        ('d', 'daily')
     )
 
-    freq = models.CharField(
-        max_length=1,
-        choices=FREQ_CHOICES,
-        default='a',
-    )
-    name = models.CharField(max_length=64, null=False)
+    freq = models.CharField(max_length=1, choices=ALLOWED_FREQUENCIES)
+    name = models.CharField(max_length=128, null=False)
     date = models.DateField(null=False)
     value = models.FloatField(null=False)
 
     class Meta:
-        unique_together = ('freq', 'name', 'date')
+        unique_together = ('freq', 'name', 'date')        
