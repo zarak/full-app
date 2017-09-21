@@ -29,7 +29,7 @@ Simplifications:
     python manage.py runserver
 
 #### Login:
-    http://localhost:8000/api-auth/login/?next=/
+    http://localhost:8000/auth/login/?next=/
     user: admin
     pass: asdasdasd
 
