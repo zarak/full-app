@@ -133,4 +133,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/datapoints/'
+LOGIN_REDIRECT_URL = '/api/'
