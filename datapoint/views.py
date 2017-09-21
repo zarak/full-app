@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from rest_framework.filters import OrderingFilter, SearchFilter
+from django_filters.rest_framework import DjangoFilterBackend
 
 from rest_framework import viewsets
 
@@ -12,3 +14,7 @@ class DatapointViewSet(viewsets.ModelViewSet):
     """
     queryset = Datapoint.objects.all()
     serializer_class = DatapointSerializer
+    filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter,)
+    filter_fields = '__all__'
+    search_fields = '__all__'
+    ordering = ('date',)
