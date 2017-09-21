@@ -34,7 +34,10 @@ Simplifications:
     pass: asdasdasd
 
 #### Datapoint page:
-    http://localhost:8000/datapoints/
+    http://localhost:8000/api/datapoints/
+   
+#### API page:
+    http://localhost:8000/api/
 
 #### Tests:
     You can look to api/tests to check how CRUD works for Datapoint
