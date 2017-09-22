@@ -16,5 +16,5 @@ class DatapointViewSet(viewsets.ModelViewSet):
     serializer_class = DatapointSerializer
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter,)
     filter_fields = '__all__'
-    search_fields = '__all__'
+    search_fields = ('name',)
     ordering = ('date',)
