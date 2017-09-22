@@ -60,5 +60,8 @@ Simplifications:
 #### Database
     Now project works with sqlite, so you can easy install it locally 
     and check how it works.
-
+    
+### Travic
+    Project work with continuous integration service. Now it works with dev branch. It run all tests before deploying changes on Git.
+    .travis.yml - main configuration file for Travic
 
