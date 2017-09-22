@@ -45,7 +45,6 @@ class DatapointTests(APITestCase):
         """
         Datapoint.objects.create(freq='d', name='BRENT', date='2017-09-21', value=42.00)
 
-        url = '/api/datapoints/'
         response = self.client.get(self.url_list, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data['results']), 2)
@@ -78,3 +77,26 @@ class DatapointTests(APITestCase):
         response = self.client.delete(self.url_detail, format='json')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Datapoint.objects.count(), 0)
+
+    def test_search(self):
+        response = self.client.get('{}?search={}'.format(self.url_list, self.datapoint.name))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data['results']), 1)
+        self.assertEqual(self.datapoint.name, response.data['results'][0]['name'], response.data)
+
+    def test_filter(self):
+        response = self.client.get('{}?freq={}&name={}&date={}&value={}'.format(
+            self.url_list, self.datapoint.freq, self.datapoint.name, self.datapoint.date, self.datapoint.value))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data['results']), 1)
+        self.assertEqual(self.datapoint.name, response.data['results'][0]['name'], response.data)
+
+    def test_order(self):
+        datapoint = Datapoint.objects.create(freq='d', name='test', date='2017-09-21', value=42.00)
+
+        response = self.client.get('{}?ordering=name'.format(self.url_list))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data['results']), 2)
+        self.assertEqual(self.datapoint.name, response.data['results'][0]['name'], response.data)
+        self.assertEqual(datapoint.name, response.data['results'][1]['name'], response.data)
+
