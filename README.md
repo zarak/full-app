@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mini-kep/full-app.svg?branch=dev)](https://travis-ci.org/mini-kep/full-app)
+
 # full-app
 Keep all functionality for (parsers + db + frontend API)  inside one Django project.
 
